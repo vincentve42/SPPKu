@@ -16,4 +16,5 @@ class ListKategoris extends ListRecords
             Actions\CreateAction::make(),
         ];
     }
+    
 }

@@ -13,7 +13,21 @@ class CreatePembayaran extends CreateRecord
     
     protected function mutateFormDataBeforeCreate(array $data): array
     {
-        $data['harga'] = 0;
+        // Data
+        // Keuangan
+        $data_keuangan = Auth::user()->Kelas->find($data["kelas_id"]);
+
+        // Siswa
+        $data_siswa = Auth::user()->Siswa->find($data["siswa_id"]);
+
+        //  Kategori
+
+        $data['nama_kategori'] = $data_keuangan->nama;
+        $data['harga'] = $data_keuangan->harga;
+
+        //  Siswa
+
+        $data['nama_siswa'] = $data_siswa->nama;
         $data['user_id'] = Auth::id();
         return $data;
     }

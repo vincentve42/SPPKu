@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string("nama_siswa");
             $table->string("nama_kategori");
             $table->string("dibayar");
+            $table->string("image");
             $table->bigInteger("kelas_id")->references("id")->on("kelas");
             $table->bigInteger("user_id")->references("id")->on("users");
             

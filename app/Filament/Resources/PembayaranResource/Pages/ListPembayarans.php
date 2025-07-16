@@ -15,5 +15,13 @@ class ListPembayarans extends ListRecords
         return [
             Actions\CreateAction::make(),
         ];
+        
+    }
+    protected function getFooterWidgets(): array
+    {
+        return [
+            PembayaranResource\Widgets\Kategori::class,
+            
+        ];
     }
 }

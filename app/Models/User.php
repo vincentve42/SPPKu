@@ -58,5 +58,31 @@ class User extends Authenticatable
     {
         return $this->hasMany(Pembayaran::class);
     }
+    public function Pengeluaran() : HasMany
+    {
+        return $this->hasMany(Pengeluaran::class);
+    }
+    public static function HitungSemuaPendapatans($user)
+    {
+        $target = User::find($user);
+        $data_keuangan = $target->Pembayaran->where('dibayar','Lunas');
+        $total = 0;
+        foreach($data_keuangan as $data_single)
+        {
+            $total += $data_single->harga;
+        }
+        return "Rp." . number_format($total,0,',','.');
+    }
+    public static function HitungSemuaPengeluaran($user)
+    {
+        $target = User::find($user);
+        $data_keuangan = $target->Pengeluaran;
+        $total = 0;
+        foreach($data_keuangan as $data_single)
+        {
+            $total += $data_single->harga;
+        }
+        return "Rp." . number_format($total,0,',','.');
+    }
     
 }

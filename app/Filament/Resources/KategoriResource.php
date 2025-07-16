@@ -24,6 +24,8 @@ class KategoriResource extends Resource
 
     protected static ?string $modelLabel = 'Kategori';
     protected static ?string $pluralModelLabel = 'Kategori';
+
+    protected static ?string $navigationGroup = 'Siswa';
     public static function getNavigationLabel(): string
     {
         return 'Kategori';
@@ -46,8 +48,9 @@ class KategoriResource extends Resource
     {
         return $table
             ->columns([
-                TextColumn::make('nama')->label('Kategori'),
-                TextColumn::make('harga')->label('Harga')
+                TextColumn::make('nama')->label('Kategori')->sortable()->searchable(),
+                TextColumn::make('harga')->label('Harga')->formatStateUsing(fn($state) => "Rp.". number_format($state,0,".",".") .""),
+                
             ])
             ->filters([
                 //
