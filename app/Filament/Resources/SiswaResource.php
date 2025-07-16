@@ -52,7 +52,8 @@ protected static ?string $pluralModelLabel = 'Siswa';
                 TextColumn::make('nama'),
                 TextColumn::make('kelas'),
                 TextColumn::make('absen'),
-                TextColumn::make('kelas_id')->label('Kategori'),
+                TextColumn::make('kategori')->label('Kategori'),
+                TextColumn::make('harga')->label('harga')
             ])
             ->filters([
                 //

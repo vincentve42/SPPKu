@@ -22,8 +22,8 @@ class KategoriResource extends Resource
     protected static ?string $slug = 'kategori';
     protected static ?string $model = Kelas::class;
 
-    protected static ?string $modelLabel = 'Golongan';
-    protected static ?string $pluralModelLabel = 'Golongan';
+    protected static ?string $modelLabel = 'Kategori';
+    protected static ?string $pluralModelLabel = 'Kategori';
     public static function getNavigationLabel(): string
     {
         return 'Kategori';
@@ -35,7 +35,7 @@ class KategoriResource extends Resource
         return $form
             ->schema([
                 TextInput::make('nama')->required(),
-                TextInput::make('harga')->required()->integer()
+                TextInput::make('harga')->required()->integer()->currencyMask('.',',')
             ]);
     }
     public static function getEloquentQuery(): Builder
@@ -47,8 +47,7 @@ class KategoriResource extends Resource
         return $table
             ->columns([
                 TextColumn::make('nama')->label('Kategori'),
-                TextColumn::make('harga')->currency('IDR'),
-
+                TextColumn::make('harga')->label('Harga')
             ])
             ->filters([
                 //
