@@ -29,7 +29,7 @@ class PengeluaranResource extends Resource
     protected static ?string $title = "Pengeluaran";
 
     protected static ?string $pluralModelLabel = "Pengeluaran";
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-o-banknotes';
 
     public static function form(Form $form): Form
     {
@@ -37,8 +37,8 @@ class PengeluaranResource extends Resource
             ->schema([
                 
                 TextInput::make('nama')->label('Keterangan'),
-                FileUpload::make('image'),
-                TextInput::make('harga')->label('Harga')->currencyMask('.','.'),
+                FileUpload::make('image')->label("Nota"),
+                TextInput::make('harga')->label('Harga')->currencyMask('.',','),
             ]);
     }
     public static function getEloquentQuery() : Builder
@@ -51,7 +51,7 @@ class PengeluaranResource extends Resource
             ->columns([
                 TextColumn::make('nama')->label('Keterangan')->sortable(),
                 TextColumn::make('harga')->label('Harga')->color('danger')->formatStateUsing(fn($state) => "Rp".number_format($state,0,',','.')),
-                ImageColumn::make('image')->label('Image'),
+                ImageColumn::make('image')->label('Nota'),
                 TextColumn::make('updated_at')->label('Dibuat')->formatStateUsing(fn($state) => Carbon::parse($state)->diffForHumans())
             ])
             ->filters([

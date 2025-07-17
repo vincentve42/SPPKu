@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Auth;
 
 class Kategori extends ChartWidget
 {
-    protected static ?string $heading = 'Chart';
+    protected static ?string $heading = 'Siswa';
 
     protected function getData(): array
     {
