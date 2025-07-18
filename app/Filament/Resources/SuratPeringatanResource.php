@@ -12,6 +12,8 @@ use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
+use Filament\Tables\Columns\ImageColumn;
+use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Table;
 use GuzzleHttp\Psr7\UploadedFile;
@@ -37,7 +39,7 @@ class SuratPeringatanResource extends Resource
             ->schema([
                 TextInput::make('keterangan')->label('Keterangan Surat'),
                 Select::make('siswa_id')->options(Auth::user()->Siswa->pluck('nama','id'))->searchable()->label('Nama Siswa'),
-                FileUpload::make('image')->label('Foto Kejadian / Surat')
+                FileUpload::make('image')->label('Foto Kejadian / Surat')->directory('surat-peringatan'),
             ]);
     }
     public function getEquolentQuery(): Builder
@@ -48,10 +50,15 @@ class SuratPeringatanResource extends Resource
     {
         return $table
             ->columns([
-                //
+                TextColumn::make('nis')->label('Nomor Induk Siswa')->searchable()->sortable(),
+                TextColumn::make('nama_siswa')->label('Nama Siswa')->searchable()->sortable(),
+                TextColumn::make('keterangan')->label('Alasan')->searchable()->sortable(),
+                TextColumn::make('surat')->label('Surat ke berapa')->sortable(),
+                ImageColumn::make('image')->label('Bukti Fisik')->sortable(),
             ])
             ->filters([
                 SelectFilter::make('kelas')->options(Auth::user()->Siswa->pluck('kelas','kelas')),
+                
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),

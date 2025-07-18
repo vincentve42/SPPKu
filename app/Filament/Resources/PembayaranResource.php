@@ -57,6 +57,7 @@ protected static ?string $navigationGroup = 'Keuangan';
     {
         return $table
             ->columns([
+                TextColumn::make('nis')->searchable()->sortable()->label('Nomor Induk Siswa'),
                 TextColumn::make("nama_siswa")->label("Nama Siswa")->searchable()->sortable(),
                 TextColumn::make("nama_kategori")->label("Kategori"),
                 TextColumn::make("harga")->label("Harga")->formatStateUsing(fn($state) => "Rp.". number_format($state,0,".",".") .""),

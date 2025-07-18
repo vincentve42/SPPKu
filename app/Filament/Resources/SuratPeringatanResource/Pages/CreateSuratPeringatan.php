@@ -20,6 +20,7 @@ class CreateSuratPeringatan extends CreateRecord
         //
         $data["user_id"] = Auth::id();
         $data["nama_siswa"] = $data_siswa->nama;
+        $data["kelas_siswa"] = $data_siswa->kelas;
         $data["nis"] = $data_siswa->nis;
         $data["surat"] = $data_surat += 1;
         return $data;

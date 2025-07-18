@@ -56,6 +56,7 @@ class PertemuanResource extends Resource
     {
         return $table
             ->columns([
+                TextColumn::make('nis')->searchable()->sortable()->label('Nomor Induk Siswa'),
                 TextColumn::make('nama_siswa')->label("Nama Siswa")->sortable()->searchable(),
                 TextColumn::make("kelas_siswa")->label("Kelas"),
                 TextColumn::make("keterangan")->label("Keterangan")->searchable(),
