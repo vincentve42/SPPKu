@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string("keterangan");
             $table->string("image")->nullable();
             $table->string("kelas_siswa");
+            $table->integer('done')->default(0);
             $table->bigInteger("user_id")->references('id')->on("users")->onDelete("cascade");
             $table->bigInteger("siswa_id")->references('id')->on("siswas")->onDelete("cascade");
 

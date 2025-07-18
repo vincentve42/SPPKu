@@ -67,6 +67,7 @@ protected static ?string $navigationGroup = 'Keuangan';
             ->filters([
                 SelectFilter::make('nama_kategori')->label('Kategori')->options(Auth::user()->Kelas->pluck('nama','nama')),
                 SelectFilter::make('dibayar')->label('Status Pembayaran')->options(Auth::user()->Pembayaran->pluck('dibayar','dibayar')),
+                SelectFilter::make('kelas')->options(Auth::user()->Siswa->pluck('kelas','kelas')),
                 
             ])
             ->actions([

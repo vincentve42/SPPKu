@@ -38,6 +38,7 @@ protected static ?string $pluralModelLabel = 'Siswa';
                 TextInput::make('nama')->required(),
                 TextInput::make('kelas'),
                 TextInput::make('absen'),
+                TextInput::make('nis')->label('Nomor Induk Siswa'),
                 Select::make('kelas_id')->label("Kategori")->options(Auth::user()->Kelas()->pluck('nama','id'))
                 
                 
@@ -49,22 +50,25 @@ protected static ?string $pluralModelLabel = 'Siswa';
     {
         return $table
             ->columns([
-                //
+                TextColumn::make('nis')->searchable()->sortable()->label('Nomor Induk Siswa'),
                 TextColumn::make('nama')->searchable()->sortable(),
                 TextColumn::make('kelas')->searchable(),
                 TextColumn::make('absen')->searchable(),
                 TextColumn::make('kategori')->label('Kategori')->searchable(true),
-                TextColumn::make('harga')->label('harga')->formatStateUsing(fn($state) => "Rp.". number_format($state,0,".",".") .""),
+                TextColumn::make('harga')->label('Harga')->formatStateUsing(fn($state) => "Rp.". number_format($state,0,".",".") .""),
             ])
             ->filters([
                SelectFilter::make('kategori')->options(Auth::user()->Kelas()->pluck('nama','nama')),
+               SelectFilter::make('kelas')->options(Auth::user()->Siswa->pluck('kelas','kelas')),
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
+                Tables\Actions\DeleteAction::make(),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
                     Tables\Actions\DeleteBulkAction::make(),
+                    
                 ]),
             ]);
     }

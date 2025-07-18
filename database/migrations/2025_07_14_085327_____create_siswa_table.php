@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('nama')->default(null);
             $table->string('kelas')->default(null);;
             $table->string('absen')->default(null);;
+            $table->string('nis')->default(null);;
             $table->timestamp('updated_at')->default(null);
             $table->timestamp('created_at')->default(null);;
             $table->bigInteger('kelas_id')->references('id')->on('kelas')->onDelete('cascade')->nullable();

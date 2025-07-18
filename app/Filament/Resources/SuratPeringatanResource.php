@@ -9,15 +9,23 @@ use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
+use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use Illuminate\Support\Facades\Auth;
 
 class SuratPeringatanResource extends Resource
 {
     protected static ?string $model = SuratPeringatan::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-o-envelope';
+
+    protected static ?string $slug = 'Surat Peringatan';
+
+    protected static ?string $pluralModelLabel = 'Surat Peringatan';
+
+    protected static ?string $navigationGroup = 'Kesiswaan';
 
     public static function form(Form $form): Form
     {
@@ -34,10 +42,11 @@ class SuratPeringatanResource extends Resource
                 //
             ])
             ->filters([
-                //
+                SelectFilter::make('kelas')->options(Auth::user()->Siswa->pluck('kelas','kelas')),
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
+                Tables\Actions\DeleteAction::make(),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([

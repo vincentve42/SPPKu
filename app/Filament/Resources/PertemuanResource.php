@@ -13,8 +13,10 @@ use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
+use Filament\Tables\Columns\CheckboxColumn;
 use Filament\Tables\Columns\ImageColumn;
 use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
@@ -57,13 +59,15 @@ class PertemuanResource extends Resource
                 TextColumn::make('nama_siswa')->label("Nama Siswa")->sortable()->searchable(),
                 TextColumn::make("kelas_siswa")->label("Kelas"),
                 TextColumn::make("keterangan")->label("Keterangan")->searchable(),
-                ImageColumn::make("image")->label("Bukti Pertemuan")
+                ImageColumn::make("image")->label("Bukti Pertemuan"),
+                CheckboxColumn::make('done')->label('Pertemuan Selesai')
             ])
             ->filters([
-                //
+                 SelectFilter::make('kelas')->options(Auth::user()->Siswa->pluck('kelas','kelas')),
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
+                Tables\Actions\DeleteAction::make(),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([

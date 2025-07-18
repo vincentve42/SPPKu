@@ -18,6 +18,7 @@ return new class extends Migration
             // Relation
             $table->string("nama_siswa");
             $table->string("keterangan");
+            $table->string("surat");
             $table->json("image");
             $table->string("kelas_siswa");
             $table->bigInteger("user_id")->references('id')->on("users")->onDelete("cascade");
