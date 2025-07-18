@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create("pembayarans", function(Blueprint $table)
         {
             $table->id();
+            $table->string('nis')->default(null);;
             $table->timestamp("created_at");
             $table->timestamp("updated_at");
             $table->bigInteger("siswa_id")->references("id")->on("siswas");

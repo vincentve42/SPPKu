@@ -15,10 +15,11 @@ return new class extends Migration
             $table->id();
             $table->timestamp("created_at");
             $table->timestamp("updated_at");
+            $table->string('nis')->default(null);;
             // Relation
             $table->string("nama_siswa");
             $table->string("keterangan");
-            $table->string("surat");
+            $table->integer("surat");
             $table->json("image");
             $table->string("kelas_siswa");
             $table->bigInteger("user_id")->references('id')->on("users")->onDelete("cascade");
@@ -34,6 +35,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        //
+        Schema::drop("sp");
     }
 };

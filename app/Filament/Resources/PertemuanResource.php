@@ -42,7 +42,7 @@ class PertemuanResource extends Resource
         return $form
             ->schema([
                 
-                Select::make("siswa_id")->options(Auth::user()->Siswa->pluck('nama','id')),
+                Select::make("siswa_id")->options(Auth::user()->Siswa->pluck('nama','id'))->searchable()->label('Nama Siswa'),
                 TextInput::make("keterangan")->required()->label("Keterangan Pertemuan"),
                 FileUpload::make("image")->required()->label("Test")->directory("pertemuan"),
               

@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create("pertemuan", function (Blueprint $table) {
             $table->id();
+            $table->string('nis')->default(null);;
             $table->timestamp("created_at");
             $table->timestamp("updated_at");
             // Relation

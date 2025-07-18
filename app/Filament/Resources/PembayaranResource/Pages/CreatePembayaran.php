@@ -29,6 +29,8 @@ class CreatePembayaran extends CreateRecord
 
         $data['nama_siswa'] = $data_siswa->nama;
         $data['user_id'] = Auth::id();
+
+        $data["nis"] = $data_siswa->nis;
         return $data;
     }
     

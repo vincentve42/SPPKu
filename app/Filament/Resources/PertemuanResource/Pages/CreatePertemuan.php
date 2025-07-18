@@ -19,7 +19,7 @@ class CreatePertemuan extends CreateRecord
         $data["kelas_siswa"] = $data_siswa->kelas;
         $data["nama_siswa"] = $data_siswa->nama;
         $data["user_id"] = Auth::id();
-        
+        $data["nis"] = $data_siswa->nis;
         return $data;
     }
 }

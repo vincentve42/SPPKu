@@ -41,7 +41,7 @@ protected static ?string $navigationGroup = 'Keuangan';
     {
         return $form
             ->schema([
-                Select::make('siswa_id')->label('Siswa')->options(Auth::user()->Siswa->pluck('nama','id'))->searchable(),
+                Select::make('siswa_id')->label('Nama Siswa')->options(Auth::user()->Siswa->pluck('nama','id'))->searchable(),
                 Select::make('kelas_id')->label('Kategori SPP')->options(Auth::user()->Kelas()->pluck('nama','id'))->searchable(),
                 Select::make('dibayar')->options([
                     'Belum dibayar' => 'Belum dibayar',
@@ -72,6 +72,7 @@ protected static ?string $navigationGroup = 'Keuangan';
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
+                Tables\Actions\DeleteAction::make(),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([

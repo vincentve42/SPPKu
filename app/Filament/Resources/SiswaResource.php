@@ -39,7 +39,7 @@ protected static ?string $pluralModelLabel = 'Siswa';
                 TextInput::make('kelas'),
                 TextInput::make('absen'),
                 TextInput::make('nis')->label('Nomor Induk Siswa'),
-                Select::make('kelas_id')->label("Kategori")->options(Auth::user()->Kelas()->pluck('nama','id'))
+                Select::make('kelas_id')->label("Kategori")->options(Auth::user()->Kelas()->pluck('nama','id'))->searchable(),
                 
                 
                 

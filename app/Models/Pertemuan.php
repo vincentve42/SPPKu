@@ -8,7 +8,7 @@ class Pertemuan extends Model
 {
     protected $table = "pertemuan";
 
-    protected $fillable = [ 'user_id','siswa_id','keterangan','nama_siswa','kelas_siswa','image'
+    protected $fillable = [ 'user_id','siswa_id','keterangan','nama_siswa','kelas_siswa','image','nis'
     ];
     
 }
