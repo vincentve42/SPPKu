@@ -41,14 +41,14 @@ protected static ?string $navigationGroup = 'Keuangan';
     {
         return $form
             ->schema([
-                Select::make('siswa_id')->label('Nama Siswa')->options(Auth::user()->Siswa->pluck('nama','id'))->searchable(),
-                Select::make('kelas_id')->label('Kategori SPP')->options(Auth::user()->Kelas()->pluck('nama','id'))->searchable(),
+                Select::make('siswa_id')->label('Nama Siswa')->options(Auth::user()->Siswa->pluck('nama','id'))->searchable()->required(),
+                Select::make('kelas_id')->label('Kategori SPP')->options(Auth::user()->Kelas()->pluck('nama','id'))->searchable()->required(),
                 Select::make('dibayar')->options([
                     'Belum dibayar' => 'Belum dibayar',
                     'Tidak ditanggungkan' => 'Tidak ditanggungkan',
                     'Beasiswa' => 'Beasiswa',
                     'Lunas' => 'Lunas',
-                ]),
+                ])->required(),
                 FileUpload::make('image'),
             ]);
     }
@@ -69,6 +69,7 @@ protected static ?string $navigationGroup = 'Keuangan';
                 SelectFilter::make('nama_kategori')->label('Kategori')->options(Auth::user()->Kelas->pluck('nama','nama')),
                 SelectFilter::make('dibayar')->label('Status Pembayaran')->options(Auth::user()->Pembayaran->pluck('dibayar','dibayar')),
                 SelectFilter::make('kelas')->options(Auth::user()->Siswa->pluck('kelas','kelas')),
+                SelectFilter::make('nama_siswa')->options(Auth::user()->Siswa->pluck('nama','nama'))->searchable(),
                 
             ])
             ->actions([

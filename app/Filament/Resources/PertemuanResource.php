@@ -42,9 +42,9 @@ class PertemuanResource extends Resource
         return $form
             ->schema([
                 
-                Select::make("siswa_id")->options(Auth::user()->Siswa->pluck('nama','id'))->searchable()->label('Nama Siswa'),
-                TextInput::make("keterangan")->required()->label("Keterangan Pertemuan"),
-                FileUpload::make("image")->required()->label("Test")->directory("pertemuan"),
+                Select::make("siswa_id")->options(Auth::user()->Siswa->pluck('nama','id'))->searchable()->label('Nama Siswa')->required(),
+                TextInput::make("keterangan")->required()->label("Keterangan Pertemuan")->required(),
+                FileUpload::make("image")->required()->label("Test")->directory("pertemuan")->required(),
               
             ]);
     }
@@ -65,6 +65,7 @@ class PertemuanResource extends Resource
             ])
             ->filters([
                  SelectFilter::make('kelas')->options(Auth::user()->Siswa->pluck('kelas','kelas')),
+                 SelectFilter::make('nama_siswa')->options(Auth::user()->Siswa->pluck('nama','nama'))->searchable(),
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),

@@ -23,7 +23,7 @@ return new class extends Migration
             $table->bigInteger("user_id")->references('id')->on("users")->onDelete("cascade");
             $table->bigInteger("siswa_id")->references('id')->on("siswas")->onDelete("cascade");
             $table->bigInteger("mata_id")->references('id')->on("mapel")->onDelete("cascade");
-
+            $table->float('nilai')->default(0);
 
 
         });

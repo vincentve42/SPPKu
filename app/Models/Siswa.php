@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Siswa extends Model
 {
@@ -21,5 +22,13 @@ class Siswa extends Model
     public function Pembayaran() : BelongsTo
     {
         return $this->belongsTo(Pembayaran::class);
+    }
+    public function NilaiHarian() : HasMany
+    {
+        return $this->hasMany(NilaiHarian::class);
+    }
+    public function NilaiSemester() : HasMany
+    {
+        return $this->hasMany(NilaiSemester::class);
     }
 }

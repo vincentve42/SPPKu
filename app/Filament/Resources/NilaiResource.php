@@ -31,7 +31,7 @@ class NilaiResource extends Resource
     {
         return $form
             ->schema([
-                TextInput::make('nama')
+                TextInput::make('nama')->required()
             ]);
     }
     public static function getEloquentQuery() : Builder
@@ -49,6 +49,7 @@ class NilaiResource extends Resource
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
+                Tables\Actions\DeleteAction::make(),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([

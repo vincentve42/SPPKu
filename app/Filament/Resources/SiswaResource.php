@@ -36,10 +36,10 @@ protected static ?string $pluralModelLabel = 'Siswa';
         return $form
             ->schema([
                 TextInput::make('nama')->required(),
-                TextInput::make('kelas'),
-                TextInput::make('absen'),
-                TextInput::make('nis')->label('Nomor Induk Siswa'),
-                Select::make('kelas_id')->label("Kategori")->options(Auth::user()->Kelas()->pluck('nama','id'))->searchable(),
+                TextInput::make('kelas')->required(),
+                TextInput::make('absen')->required(),
+                TextInput::make('nis')->label('Nomor Induk Siswa')->required(),
+                Select::make('kelas_id')->label("Kategori")->options(Auth::user()->Kelas()->pluck('nama','id'))->searchable()->required(),
                 
                 
                 
@@ -60,6 +60,7 @@ protected static ?string $pluralModelLabel = 'Siswa';
             ->filters([
                SelectFilter::make('kategori')->options(Auth::user()->Kelas()->pluck('nama','nama')),
                SelectFilter::make('kelas')->options(Auth::user()->Siswa->pluck('kelas','kelas')),
+               
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),

@@ -8,6 +8,7 @@
         "php": "^8.2",
         "ariaieboy/filament-currency": "^1.13",
         "filament/filament": "^3.3",
+        "filament/notifications": "^3.3",
         "filament/widgets": "^3.3",
         "flowframe/laravel-trend": "^0.4.0",
         "laravel/framework": "^11.0",

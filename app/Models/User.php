@@ -84,5 +84,17 @@ class User extends Authenticatable
         }
         return "Rp." . number_format($total,0,',','.');
     }
+    public function MataPelajaran() : HasMany
+    {
+        return $this->hasMany(Nilai::class);
+    }
+    public function NilaiHarian() : HasMany
+    {
+        return $this->hasMany(NilaiHarian::class);
+    }
+    public function NilaiSemester() : HasMany
+    {
+        return $this->hasMany(NilaiSemester::class);
+    }
     
 }

@@ -5,6 +5,8 @@ namespace App\Filament\Resources;
 use App\Filament\Resources\SuratPeringatanResource\Pages;
 use App\Filament\Resources\SuratPeringatanResource\RelationManagers;
 use App\Models\SuratPeringatan;
+use Filament\Actions\ExportAction;
+use Filament\Facades\Filament;
 use Filament\Forms;
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Select;
@@ -37,9 +39,9 @@ class SuratPeringatanResource extends Resource
     {
         return $form
             ->schema([
-                TextInput::make('keterangan')->label('Keterangan Surat'),
-                Select::make('siswa_id')->options(Auth::user()->Siswa->pluck('nama','id'))->searchable()->label('Nama Siswa'),
-                FileUpload::make('image')->label('Foto Kejadian / Surat')->directory('surat-peringatan'),
+                TextInput::make('keterangan')->label('Keterangan Surat')->required(),
+                Select::make('siswa_id')->options(Auth::user()->Siswa->pluck('nama','id'))->searchable()->label('Nama Siswa')->required(),
+                FileUpload::make('image')->label('Foto Kejadian / Surat')->directory('surat-peringatan')->required(),
             ]);
     }
     public function getEquolentQuery(): Builder
@@ -58,15 +60,21 @@ class SuratPeringatanResource extends Resource
             ])
             ->filters([
                 SelectFilter::make('kelas')->options(Auth::user()->Siswa->pluck('kelas','kelas')),
+                SelectFilter::make('nama_siswa')->options(Auth::user()->Siswa->pluck('nama','nama'))->searchable(),
                 
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
                 Tables\Actions\DeleteAction::make(),
+                
+            ])
+            ->headerActions([
+                // Tables\Actions\ExportAction::make()->exporter(SuratPeringatan::class)
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
                     Tables\Actions\DeleteBulkAction::make(),
+                    
                 ]),
             ]);
     }

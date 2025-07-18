@@ -36,9 +36,9 @@ class PengeluaranResource extends Resource
         return $form
             ->schema([
                 
-                TextInput::make('nama')->label('Keterangan'),
-                FileUpload::make('image')->label("Nota"),
-                TextInput::make('harga')->label('Harga')->currencyMask('.',','),
+                TextInput::make('nama')->label('Keterangan')->required(),
+                FileUpload::make('image')->label("Nota")->required(),
+                TextInput::make('harga')->label('Harga')->currencyMask('.',',')->required(),
             ]);
     }
     public static function getEloquentQuery() : Builder
