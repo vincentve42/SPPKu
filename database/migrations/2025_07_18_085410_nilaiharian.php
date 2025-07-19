@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('nis')->default(null);;
             // Relation
             $table->string("nama_siswa");
+            $table->string("absen_siswa");
             $table->string("mata_pelajaran");
             $table->string("kelas_siswa");
             $table->bigInteger("user_id")->references('id')->on("users")->onDelete("cascade");

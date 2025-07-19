@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources;
 
+use App\Filament\Exports\SuratPeringatanExporter;
 use App\Filament\Resources\SuratPeringatanResource\Pages;
 use App\Filament\Resources\SuratPeringatanResource\RelationManagers;
 use App\Models\SuratPeringatan;
@@ -69,13 +70,14 @@ class SuratPeringatanResource extends Resource
                 
             ])
             ->headerActions([
-                // Tables\Actions\ExportAction::make()->exporter(SuratPeringatan::class)
+                \Filament\Tables\Actions\ExportAction::make()->exporter(SuratPeringatanExporter::class)
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
                     Tables\Actions\DeleteBulkAction::make(),
                     
                 ]),
+                Tables\Actions\ExportBulkAction::make()->exporter(SuratPeringatanExporter::class)
             ]);
     }
 

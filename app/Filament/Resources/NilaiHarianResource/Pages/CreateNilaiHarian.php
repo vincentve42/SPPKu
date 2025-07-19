@@ -27,6 +27,7 @@ class CreateNilaiHarian extends CreateRecord
             $data["kelas_siswa"] = $data_siswa->kelas;
             $data["nis"] = $data_siswa->nis;
             $data["mata_pelajaran"] = $data_mapel->nama;
+            $data["absen_siswa"] = $data_siswa->absen;
             
             //
             $nilai_semester = $data_siswa->NilaiSemester->where("mata_pelajaran", $data_mapel->nama)->first(); 
@@ -57,6 +58,7 @@ class CreateNilaiHarian extends CreateRecord
             $data["kelas_siswa"] = $data_siswa->kelas;
             $data["nis"] = $data_siswa->nis;
             $data["mata_pelajaran"] = $data_mapel->nama;
+            $data["absen_siswa"] = $data_siswa->absen;
             //
             $nilai_semester = new NilaiSemester;
             $nilai_semester->siswa_id = $data["siswa_id"];
@@ -64,6 +66,7 @@ class CreateNilaiHarian extends CreateRecord
             $nilai_semester->kelas_siswa = $data_siswa->kelas;
             $nilai_semester->user_id = Auth::id();
             $nilai_semester->nama_siswa = $data_siswa->nama;
+            $nilai_semester->absen_siswa = $data_siswa->absen;
             $nilai_semester->mata_pelajaran = $data_mapel->nama;
             $nilai_semester->nilai = $data["nilai"];
             $nilai_semester->mata_id = $data['mata_id'];

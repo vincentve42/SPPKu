@@ -17,6 +17,7 @@ return new class extends Migration
             $table->morphs('notifiable');
             $table->text('data');
             $table->timestamp('read_at')->nullable();
+            $table->bigInteger('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
         });
     }

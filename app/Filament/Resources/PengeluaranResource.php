@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources;
 
+use App\Filament\Exports\PengeluaranExporter;
 use App\Filament\Resources\PengeluaranResource\Pages;
 use App\Filament\Resources\PengeluaranResource\RelationManagers;
 use App\Models\Pengeluaran;
@@ -61,10 +62,14 @@ class PengeluaranResource extends Resource
                 Tables\Actions\EditAction::make(),
                 Tables\Actions\DeleteAction::make(),
             ])
+            ->headerActions([
+                \Filament\Tables\Actions\ExportAction::make()->exporter(PengeluaranExporter::class),
+            ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
                     Tables\Actions\DeleteBulkAction::make(),
                 ]),
+                Tables\Actions\ExportBulkAction::make()->exporter(PengeluaranExporter::class)
             ]);
     }
 

@@ -2,11 +2,13 @@
 
 namespace App\Filament\Resources;
 
+use App\Filament\Exports\SiswaExporter;
 use App\Filament\Resources\SiswaResource\Pages;
 use App\Filament\Resources\SiswaResource\RelationManagers;
 use App\Models\Kelas;
 use App\Models\Siswa;
 use Doctrine\DBAL\Schema\Column;
+use Filament\Actions\ExportAction;
 use Filament\Forms;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
@@ -66,11 +68,16 @@ protected static ?string $pluralModelLabel = 'Siswa';
                 Tables\Actions\EditAction::make(),
                 Tables\Actions\DeleteAction::make(),
             ])
+            ->headerActions([
+                \Filament\Tables\Actions\ExportAction::make()->exporter(SiswaExporter::class)
+            ])
+            
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
                     Tables\Actions\DeleteBulkAction::make(),
                     
                 ]),
+                Tables\Actions\ExportBulkAction::make()->exporter(SiswaExporter::class)
             ]);
     }
 

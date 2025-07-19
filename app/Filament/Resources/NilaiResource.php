@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources;
 
+use App\Filament\Exports\NilaiExporter;
 use App\Filament\Resources\NilaiResource\Pages;
 use App\Filament\Resources\NilaiResource\RelationManagers;
 use App\Models\Nilai;
@@ -51,11 +52,14 @@ class NilaiResource extends Resource
                 Tables\Actions\EditAction::make(),
                 Tables\Actions\DeleteAction::make(),
             ])
+            
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
                     Tables\Actions\DeleteBulkAction::make(),
                 ]),
+                Tables\Actions\ExportBulkAction::make()->exporter(NilaiExporter::class)
             ]);
+            
     }
 
     public static function getRelations(): array

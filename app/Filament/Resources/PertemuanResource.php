@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources;
 
+use App\Filament\Exports\PertemuanExporter;
 use App\Filament\Resources\PertemuanResource\Pages;
 use App\Filament\Resources\PertemuanResource\RelationManagers;
 use App\Models\Pertemuan;
@@ -70,11 +71,16 @@ class PertemuanResource extends Resource
             ->actions([
                 Tables\Actions\EditAction::make(),
                 Tables\Actions\DeleteAction::make(),
+                
+            ])
+            ->headerActions([
+                \Filament\Tables\Actions\ExportAction::make()->exporter(PertemuanExporter::class)
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
                     Tables\Actions\DeleteBulkAction::make(),
                 ]),
+                Tables\Actions\ExportBulkAction::make()->exporter(PertemuanExporter::class)
             ]);
     }
 

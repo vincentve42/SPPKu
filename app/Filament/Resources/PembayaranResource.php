@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources;
 
+use App\Filament\Exports\PembayaranExporter;
 use App\Filament\Resources\PembayaranResource\Pages;
 use App\Filament\Resources\PembayaranResource\RelationManagers;
 use App\Models\Pembayaran;
@@ -72,6 +73,9 @@ protected static ?string $navigationGroup = 'Keuangan';
                 SelectFilter::make('nama_siswa')->options(Auth::user()->Siswa->pluck('nama','nama'))->searchable(),
                 
             ])
+            ->headerActions([
+                \Filament\Tables\Actions\ExportAction::make()->exporter(PembayaranExporter::class),
+            ])
             ->actions([
                 Tables\Actions\EditAction::make(),
                 Tables\Actions\DeleteAction::make(),
@@ -80,6 +84,7 @@ protected static ?string $navigationGroup = 'Keuangan';
                 Tables\Actions\BulkActionGroup::make([
                     Tables\Actions\DeleteBulkAction::make(),
                 ]),
+                Tables\Actions\ExportBulkAction::make()->exporter(PembayaranExporter::class)
             ]);
     }
 

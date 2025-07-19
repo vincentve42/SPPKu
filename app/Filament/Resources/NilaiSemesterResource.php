@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources;
 
+use App\Filament\Exports\NilaiSemesterExporter;
 use App\Filament\Resources\NilaiSemesterResource\Pages;
 use App\Filament\Resources\NilaiSemesterResource\RelationManagers;
 use App\Models\NilaiSemester;
@@ -48,10 +49,14 @@ class NilaiSemesterResource extends Resource
             ->actions([
                 
             ])
+            ->headerActions([
+                \Filament\Tables\Actions\ExportAction::make()->exporter(NilaiSemesterExporter::class),
+            ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
                     Tables\Actions\DeleteBulkAction::make(),
                 ]),
+                Tables\Actions\ExportBulkAction::make()->exporter(NilaiSemesterExporter::class)
             ]);
     }
 

@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources;
 
+use App\Filament\Exports\NilaiHarianExporter;
 use App\Filament\Resources\NilaiHarianResource\Pages;
 use App\Filament\Resources\NilaiHarianResource\RelationManagers;
 use App\Models\NilaiHarian;
@@ -62,11 +63,15 @@ class NilaiHarianResource extends Resource
                 Tables\Actions\EditAction::make(),
                 Tables\Actions\DeleteAction::make(),
             ])
+             ->headerActions([
+                \Filament\Tables\Actions\ExportAction::make()->exporter(NilaiHarianExporter::class),
+            ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
                     Tables\Actions\DeleteBulkAction::make(),
                     
                 ]),
+                Tables\Actions\ExportBulkAction::make()->exporter(NilaiHarianExporter::class)
             ]);
     }
 
