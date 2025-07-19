@@ -34,8 +34,12 @@
                     </div>
                     
                     @if(session('info'))
+
+
                     <ul class="text-center mt-5 text-green-500">
+                        
                                 <li>Informasi : {{session('info')}}</li>
+                                <a href="/pembayaran"><li class="text-blue-500">Ajukan Pembayaran</li></a>
                     </ul>
                     @endif
                     <div class="pl-12">

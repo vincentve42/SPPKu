@@ -13,7 +13,7 @@
                 <div class="mt-5">
                     <h2 class="text-center text-xl pt-5 font-semibold">SPPKu</h2>
 
-                    <h1 class="text-center text-2xl pt-3 font-semibold">Lacak Pembayaran</h1>
+                    <h1 class="text-center text-2xl pt-3 font-semibold">Ajukan Pembayaran</h1>
                     <div class="flex justify-start pl-12 pt-5">
                         <h1>Nama Sekolah</h1><p class="text-red-500 pl-1">*</p>
                         
