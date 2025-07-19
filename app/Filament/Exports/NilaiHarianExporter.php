@@ -18,7 +18,9 @@ class NilaiHarianExporter extends Exporter
             ExportColumn::make('nis')->label('Nomor Induk Siswa'),
             ExportColumn::make('nama_siswa')->label('Nama Siswa'),
             ExportColumn::make('kelas_siswa')->label('Kelas'),
+            ExportColumn::make('absen_siswa')->label('Absen Siswa'),
             ExportColumn::make('mata_pelajaran')->label('Mata Pelajaran'),
+            ExportColumn::make('mata_id')->label('Mata Pelajaran Link ( From Website / Buat satu jika belum pernah dibuat )'),
             ExportColumn::make('nilai')->label('Nilai Siswa'),
         ];
     }

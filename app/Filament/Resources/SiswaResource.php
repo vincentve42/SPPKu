@@ -3,6 +3,7 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Exports\SiswaExporter;
+use App\Filament\Imports\SiswaImporter;
 use App\Filament\Resources\SiswaResource\Pages;
 use App\Filament\Resources\SiswaResource\RelationManagers;
 use App\Models\Kelas;
@@ -69,7 +70,8 @@ protected static ?string $pluralModelLabel = 'Siswa';
                 Tables\Actions\DeleteAction::make(),
             ])
             ->headerActions([
-                \Filament\Tables\Actions\ExportAction::make()->exporter(SiswaExporter::class)
+                \Filament\Tables\Actions\ExportAction::make()->exporter(SiswaExporter::class),
+                \Filament\Tables\Actions\ImportAction::make()->importer(SiswaImporter::class)
             ])
             
             ->bulkActions([

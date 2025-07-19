@@ -21,6 +21,8 @@ class SiswaExporter extends Exporter
            ExportColumn::make("kelas")->label("Kelas"),
            ExportColumn::make("absen")->label("Absen"),
            ExportColumn::make("kategori")->label("Kategori"),
+           ExportColumn::make("kelas_id")->label("Link to Kategori ( From Website / buat satu jika belum pernah dibuat)"),
+           
            ExportColumn::make("harga")->label("Harga"),
         ];
     }

@@ -31,4 +31,8 @@ class Siswa extends Model
     {
         return $this->hasMany(NilaiSemester::class);
     }
+    public function SuratPeringatan() : HasMany
+    {
+        return $this->hasMany(SuratPeringatan::class);
+    }
 }

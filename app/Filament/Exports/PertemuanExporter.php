@@ -17,7 +17,10 @@ class PertemuanExporter extends Exporter
             ExportColumn::make('id')->label('Nomor Induk Siswa'),
             ExportColumn::make('nis')->label('Nomor Induk Siswa'),
             ExportColumn::make('nama_siswa')->label('Nama Siswa'),
+            
             ExportColumn::make('kelas_siswa')->label('Kelas'),
+            
+            
             ExportColumn::make('keterangan')->label('Keterangan'),
             ExportColumn::make('done')->label('Selesai'),
             ExportColumn::make('image')->label('Image_link'),

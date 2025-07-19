@@ -22,9 +22,14 @@ class NilaiResource extends Resource
     protected static ?string $model = Nilai::class;
 
     protected static ?string $slug = 'mata-pelajaran';
+
+    protected static ?string $title = 'Mata Pelajaran';
+
     protected static ?string $navigationGroup = 'Nilai Siswa';
 
     protected static ?string $pluralModelLabel = 'Mata Pelajaran';
+
+    protected static ?string $singularLabel = 'Mapel';
 
     protected static ?string $navigationIcon = 'heroicon-o-academic-cap';
 

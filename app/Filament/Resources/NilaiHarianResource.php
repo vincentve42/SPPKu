@@ -3,6 +3,7 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Exports\NilaiHarianExporter;
+use App\Filament\Imports\NilaiHarianImporter;
 use App\Filament\Resources\NilaiHarianResource\Pages;
 use App\Filament\Resources\NilaiHarianResource\RelationManagers;
 use App\Models\NilaiHarian;
@@ -51,6 +52,9 @@ class NilaiHarianResource extends Resource
         return $table
             ->columns([
                 TextColumn::make('nis')->label('Nomor Induk Siswa')->searchable(),
+                TextColumn::make('nama_siswa')->label('Nama Siswa')->searchable(),
+                TextColumn::make('kelas_siswa')->label('Kelas Siswa')->searchable(),
+                TextColumn::make('absen_siswa')->label('Absen Siswa')->searchable(),
                 TextColumn::make('mata_pelajaran')->label('Mata Pelajaran')->searchable(),
                 TextColumn::make('nilai')->label('Nilai')
             ])
@@ -65,6 +69,7 @@ class NilaiHarianResource extends Resource
             ])
              ->headerActions([
                 \Filament\Tables\Actions\ExportAction::make()->exporter(NilaiHarianExporter::class),
+                \Filament\Tables\Actions\ImportAction::make()->importer(NilaiHarianImporter::class),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
